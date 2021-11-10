@@ -23,6 +23,9 @@ if (my.result.failCount != 0) {
                     text("Test Method")
                 }
                 th(class: "pane-header") {
+                    text("Age")
+                }
+                th(class: "pane-header") {
                     text("Duration")
                 }
             }
@@ -43,6 +46,11 @@ if (my.result.failCount != 0) {
                         }
                         div(id:"${failedTest.id}", style: "display:none", class: "hidden") {
                             text("Loading...")
+                        }
+                    }
+                    td(align: "center") {
+                        a(href:"${failedTest.upUrl}") {
+                            text("${failedTest.failAge}")
                         }
                     }
                     td(align: "right") {
