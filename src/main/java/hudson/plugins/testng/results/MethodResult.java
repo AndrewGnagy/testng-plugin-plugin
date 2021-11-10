@@ -230,6 +230,10 @@ public class MethodResult extends BaseResult {
         return getParent().getName();
     }
 
+    public String getPackageName() {
+        return getParent().getParent().getName();
+    }
+
     public void setGroups(List<String> groups) {
         this.groups = groups;
     }
@@ -437,5 +441,18 @@ public class MethodResult extends BaseResult {
     @Override
     public boolean hasChildren() {
         return false;
+    }
+
+    public long getFailAge() {
+        long failAge = 0;
+        MethodResult result = this;
+
+        while (result != null && result.getStatus().equalsIgnoreCase("fail")) {
+            failAge++;
+
+            result = (MethodResult) result.getPreviousResult();
+        }
+
+        return failAge;
     }
 }
